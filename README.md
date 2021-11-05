@@ -5,3 +5,4 @@ Programs needed:
 - OhMyZsh
 - i3
 - Polybar
+- Shell Color Scripts (From DT)
