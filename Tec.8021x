@@ -1,0 +1,9 @@
+ctrl_interface=/var/run/wpa_supplicant
+network={
+	ssid=""
+	scan_ssid=1
+	identity=""
+	password=""
+	key_mgmt=WPA-EAP
+	phase2="auth=MSCHAPV2"
+}
