@@ -6,3 +6,5 @@ Programs needed:
 - i3
 - Polybar
 - Shell Color Scripts (From DT)
+- Picom
+- Nitrogen
