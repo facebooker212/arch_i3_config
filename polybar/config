@@ -57,7 +57,7 @@ click-right = pavucontrol
 [module/cpu]
 type = internal/cpu
 interval = 1
-label = 龍 %percentage%%   %
+label = 龍 %percentage%%    .
 
 [module/date]
 type = internal/date
