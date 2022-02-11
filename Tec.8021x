@@ -7,3 +7,4 @@ network={
 	key_mgmt=WPA-EAP
 	phase2="auth=MSCHAPV2"
 }
+#wpa_supplicant -c /home/facebooker/Tec.8021x -i wlan0 -D nl80211
