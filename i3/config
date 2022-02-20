@@ -175,38 +175,28 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+set_from_resource $uf i3wm.color0
+set_from_resource $fc i3wm.color3
+set_from_resource $fc_ia i3wm.color2
+set_from_resource $ph i3wm.color5
+
 # class                 border  bground text    indicator child_border
-client.focused          #FF00FF #000000 #FF00FF #FF00FF   #FF00FF
-client.focused_inactive #333333 #222222 #888888 #333333   #333333
-client.unfocused        #00FFFF #000000 #00FFFF #00FFFF   #00FFFF
-client.urgent           #FF0000 #FF0000 #FFFFFF #FF0000   #FF0000
-client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #000000
+client.focused          $fc $fc $fc $fc $fc
+client.focused_inactive $fc_ia $fc_ia $fc_ia $fc_ia $fc_ia
+client.unfocused        $uf $uf $uf $uf $uf
+client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 
 client.background       #FFFFFF
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#	status_command /usr/bin/bumblebee-status \
-#	-m arch_update spotify cpu date time system \
-#	pasink pasource \
-#	-p time.format="%H:%M" system.reboot system.shutdown system.logout\
-#	-t iceberg-dark-powerline
-#	position top
-#	tray_output primary
-#	i3bar_command i3bar --transparency
-#  colors {
-#    background #000000
-#    statusline #FFFFFF
-#    separator  #666666
-#
-#    focused_workspace  #FF00FF #000000 #FF00FF
-#    active_workspace   #333333 #222222 #FFFFFF
-#    inactive_workspace #00FFFF #000000 #00FFFF
-#    urgent_workspace   #FF0000 #FF0000 #FFFFFF
-#    binding_mode       #FF0000 #FF0000 #FFFFFF
-#  }
-#}
+# class                 border  bground text    indicator child_border
+#client.focused          #FF00FF #000000 #FF00FF #FF00FF   #FF00FF
+#client.focused_inactive #333333 #222222 #888888 #333333   #333333
+#client.unfocused        #00FFFF #000000 #00FFFF #00FFFF   #00FFFF
+#client.urgent           #FF0000 #FF0000 #FFFFFF #FF0000   #FF0000
+#client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #000000
+
+#client.background       #FFFFFF
 
 gaps outer 5
 gaps inner 8
@@ -220,3 +210,4 @@ exec_always picom -b -f
 exec_always nitrogen --restore
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 #exec_always --no-startup-id $HOME/polybar-collection/launch.sh
+exec_always wal -R
