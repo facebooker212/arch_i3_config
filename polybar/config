@@ -13,6 +13,11 @@
 
 [colors]
 background = #aa000000
+solid-bg = #000000
+pywalColor0 = ${xrdb:i3wm.color0}
+pywalColor1 = ${xrdb:i3wm.color1}
+pywalColor2 = ${xrdb:i3wm.color2}
+pywalColor3 = ${xrdb:i3wm.color3}
 
 [fonts]
 font-0 = SauceCodePro Nerd Font Mono:size=13;2
@@ -21,15 +26,16 @@ font-0 = SauceCodePro Nerd Font Mono:size=13;2
 font-0 = ${fonts.font-0}
 bottom = false
 height = 2%
-border-size = 5
-radius = 10
+#border-size = 5
+#radius = 10
 padding = 1
-tray-position = right
+tray-position = center
 tray-detached = true
-tray-offset-x = -5
+tray-offset-x = -5%
 tray-padding = 2
 module-margin = 1
-background = ${colors.background}
+background = ${colors.pywalColor0}
+line-size = 3%
 modules-left = powermenu i3
 modules-center = date
 modules-right =  spotify pulseaudio cpu
@@ -49,7 +55,7 @@ click-middle = playerctl --player=spotify previous
 [module/pulseaudio]
 type = internal/pulseaudio
 use-ui-max = false
-label-volume =  %percentage%%
+label-volume = %{u#ffffff}%{+u}  %percentage%%
 interval = 2
 label-muted = 
 click-right = pavucontrol
@@ -57,7 +63,7 @@ click-right = pavucontrol
 [module/cpu]
 type = internal/cpu
 interval = 1
-label = 龍 %percentage%%    .
+label = %{u#ffffff}%{+u} 龍 %percentage%%
 
 [module/date]
 type = internal/date
@@ -83,11 +89,12 @@ ws-icon-8 = 9;ﭮ
 ws-icon-9 = 10;ﭮ
 label-focused = %name% %icon%
 label-focused-foreground = #ffffff
-label-focused-background = #FF00FF
-label-focused-underline = #FF00FF
+label-focused-background = ${colors.pywalColor3}
+label-focused-underline = ${colors.pywalColor2}
 label-unfocused = %name% %icon%
+label-unfocused-underline = ${colors.pywalColor1}
 label-visible = %name% %icon%
-label-visible-underline = #555555
+label-visible-underline = ${colors.pywalColor2}
 label-urgent = %name% %icon%
 label-urgent-background = #FF0000
 label-separator = |
