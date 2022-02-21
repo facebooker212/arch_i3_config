@@ -20,7 +20,7 @@ pywalColor2 = ${xrdb:i3wm.color2}
 pywalColor3 = ${xrdb:i3wm.color3}
 
 [fonts]
-font-0 = SauceCodePro Nerd Font Mono:size=13;2
+font-0 = SauceCodePro Nerd Font:size=12;2
 
 [bar/left]
 font-0 = ${fonts.font-0}
@@ -77,32 +77,46 @@ label = %date% %time%
 [module/i3]
 type = internal/i3
 index-sort = true
-ws-icon-0 = 1;
-ws-icon-1 = 2;ﭮ
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;ﭮ
-ws-icon-5 = 6;ﭮ
-ws-icon-6 = 7;ﭮ
-ws-icon-7 = 8;ﭮ
-ws-icon-8 = 9;ﭮ
-ws-icon-9 = 10;ﭮ
-label-focused = %name% %icon%
+#ws-icon-0 = 1;
+ws-icon-0 = 1;爵
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+ws-icon-default = 
+label-mode = %mode%
+label-mode-padding = 5
+#label-focused = %name% %icon%
+label-focused = %icon%
 label-focused-foreground = #ffffff
 label-focused-background = ${colors.pywalColor3}
 label-focused-underline = ${colors.pywalColor2}
-label-unfocused = %name% %icon%
+label-focused-padding = 1
+#label-unfocused = %name% %icon%
+label-unfocused = %icon%
 label-unfocused-underline = ${colors.pywalColor1}
-label-visible = %name% %icon%
+label-unfocused-padding = 1
+#label-visible = %name% %icon%
+label-visible = %icon%
 label-visible-underline = ${colors.pywalColor2}
-label-urgent = %name% %icon%
+label-visible-padding = 1
+#label-urgent = %name% %icon%
+label-urgent = %icon%
 label-urgent-background = #FF0000
-label-separator = |
+label-urgent-padding = 1
+#label-separator = |
+label-separator =
 
 [module/powermenu]
 type = custom/menu
 
-label-open = 
+#label-open = 
+label-open = 
 label-close = cancel
 label-separator = |
 
