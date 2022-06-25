@@ -208,10 +208,10 @@ gaps inner 8
 smart_gaps on
 for_window [class="^.*"] border pixel 3
 
-bindsym $mod+d exec "dmenu_run -nf '#FFFFFF' -nb '#000000' -sb '#7D00FF' -sf '#FFFFFF' -fn 'monospace-10' -p 'dmenu prompt'"
+bindsym $mod+d exec "dmenu_run -nf '$uf' -nb '$fc' -sb '$fc_ia' -sf '#FFFFFF' -fn 'monospace-10' -p 'your usual 3AM, sir'"
 
 exec_always nvidia-settings
-exec_always picom -b -f
+exec_always picom -b --fade-in-step=1 --fade-out-step=1 --fade-delta=0
 #exec_always nitrogen --restore
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 #exec_always --no-startup-id $HOME/polybar-collection/launch.sh
