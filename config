@@ -1,0 +1,248 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;==========================================================
+
+[colors]
+background = #aa000000
+solid-bg = #000000
+pywalColor0 = ${xrdb:i3wm.color0}
+pywalColor1 = ${xrdb:i3wm.color1}
+pywalColor2 = ${xrdb:i3wm.color2}
+pywalColor3 = ${xrdb:i3wm.color3}
+
+[fonts]
+font-0 = SauceCodePro Nerd Font:size=12;2
+font-1 = Weather Icons:size=10;1
+
+[bar/left]
+font-0 = ${fonts.font-0}
+font-1 = ${fonts.font-1}
+bottom = false
+height = 2%
+#border-size = 5
+#radius = 10
+padding = 1
+tray-position = right
+tray-detached = false
+tray-offset-x = 0px
+tray-padding = 2
+module-margin = 5px
+#background = ${colors.pywalColor0}
+background = #73000000
+line-size = 3px
+modules-left = powermenu i3
+modules-center = date
+modules-right =  cava spotify updates-pacman-aurhelper openweathermap-fullfeatured pulseaudio temperature cpu battery
+
+[module/updates-pacman-aurhelper]
+type = custom/script
+exec = ~/.config/polybar/updates-pacman-aur.sh
+interval = 600
+format-underline = #FFFFFF
+
+[module/openweathermap-fullfeatured]
+type = custom/script
+exec = ~/.config/polybar/weather-test.sh
+interval = 600
+label-font = 2
+format-underline = #FFFFFF
+
+[module/temperature]
+type = internal/temperature
+interval = 0.5
+thermal-zone = 0
+hwmon-path = /sys/devices/virtual/thermal/thermal_zone0/hwmon1/temp1_input
+base-temperature = 20
+warn-temperature = 80
+format-underline = #FFFFFF
+format-warn-underline = #f50a4d
+
+[module/cava]
+type = custom/script
+tail = true
+exec = $HOME/.config/polybar/cava.sh
+format = <label>
+format-font = 5
+label = %output%
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = python ~/.config/polybar/spotify_status.py -f ' {artist}: {song}'
+format-underline = #1db954
+;control players (optional)
+click-left = playerctl --player=spotify play-pause
+click-right = playerctl --player=spotify next
+click-middle = playerctl --player=spotify previous
+
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = false
+label-volume = %{u#FFFFFF}%{+u}  %percentage%%
+interval = 2
+label-muted = 
+click-right = pavucontrol
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+label = %{u#ffffff}%{+u} 龍 %percentage%%
+
+[module/date]
+type = internal/date
+interval = 1.0
+date = %Y-%m-%d%
+time = %H:%M
+date-alt = %A, %d %B %Y
+time-alt = %H:%M:%S
+label = %date% %time%
+
+[module/i3]
+type = internal/i3
+index-sort = true
+#ws-icon-0 = 1;
+ws-icon-0 = 1;爵
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+ws-icon-default = 
+label-mode = %mode%
+label-mode-padding = 5
+#label-focused = %name% %icon%
+label-focused = %icon%
+label-focused-foreground = #ffffff
+label-focused-background = ${colors.pywalColor3}
+label-focused-underline = ${colors.pywalColor2}
+label-focused-padding = 1
+#label-unfocused = %name% %icon%
+label-unfocused = %icon%
+label-unfocused-underline = ${colors.pywalColor1}
+label-unfocused-padding = 1
+#label-visible = %name% %icon%
+label-visible = %icon%
+label-visible-underline = ${colors.pywalColor2}
+label-visible-padding = 1
+#label-urgent = %name% %icon%
+label-urgent = %icon%
+label-urgent-background = #FF0000
+label-urgent-padding = 1
+#label-separator = |
+label-separator =
+
+[module/powermenu]
+type = custom/menu
+
+#label-open = 
+label-open = 
+label-close = cancel
+label-separator = |
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = reboot
+menu-1-0-exec = systemctl reboot
+menu-1-1 = back
+menu-1-1-exec = menu-open-0
+
+menu-2-0 = power off
+menu-2-0-exec = systemctl poweroff
+menu-2-1 = back
+menu-2-1-exec = menu-open-0
+
+[module/battery]
+type = internal/battery
+full-at = 99
+
+battery = BAT0
+adapter = ADP1
+
+poll-interval = 5
+
+time-format = %H:%M
+
+; Available tags:
+;   <label-charging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-charging>
+format-charging = <animation-charging> <label-charging>
+
+; Available tags:
+;   <label-discharging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+; Available tags:
+;   <label-full> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;format-full = <ramp-capacity> <label-full>
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+;   %time%
+;   %consumption% (shows current charge rate in watts)
+label-charging = %{u#ffffff}%{+u} %percentage%%
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+;   %time%
+;   %consumption% (shows current discharge rate in watts)
+label-discharging = %{u#ffffff}%{+u} %percentage%%
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+label-full = %{u#ffffff}%{+u} %percentage%%
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = %{u#ffffff}%{+u}
+ramp-capacity-1 = %{u#ffffff}%{+u}
+ramp-capacity-2 = %{u#ffffff}%{+u}
+ramp-capacity-3 = %{u#ffffff}%{+u}
+ramp-capacity-4 = %{u#ffffff}%{+u}
+
+; Only applies if <bar-capacity> is used
+bar-capacity-width = 10
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = %{u#ffffff}%{+u}
+animation-charging-1 = %{u#ffffff}%{+u}
+animation-charging-2 = %{u#ffffff}%{+u}
+animation-charging-3 = %{u#ffffff}%{+u}
+animation-charging-4 = %{u#ffffff}%{+u}
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+; Only applies if <animation-discharging> is used
+animation-discharging-0 = %{u#ffffff}%{+u}
+animation-discharging-1 = %{u#ffffff}%{+u}
+animation-discharging-2 = %{u#ffffff}%{+u}
+animation-discharging-3 = %{u#ffffff}%{+u}
+animation-discharging-4 = %{u#ffffff}%{+u}
+; Framerate in milliseconds
+animation-discharging-framerate = 500
