@@ -21,7 +21,7 @@ pywalColor3 = ${xrdb:i3wm.color3}
 
 [fonts]
 font-0 = SauceCodePro Nerd Font:size=12;2
-font-1 = Weather Icons:size=12;1
+font-1 = Weather Icons:size=10;1
 
 [bar/left]
 font-0 = ${fonts.font-0}
@@ -35,17 +35,23 @@ tray-position = right
 tray-detached = false
 tray-offset-x = 0px
 tray-padding = 2
-module-margin = 1
+module-margin = 5px
 #background = ${colors.pywalColor0}
 background = #73000000
 line-size = 3px
 modules-left = powermenu i3
 modules-center = date
-modules-right =  cava spotify openweathermap-fullfeatured pulseaudio temperature cpu battery
+modules-right =  cava spotify updates-pacman-aurhelper openweathermap-fullfeatured pulseaudio temperature cpu battery
+
+[module/updates-pacman-aurhelper]
+type = custom/script
+exec = ~/.config/polybar/updates-pacman-aur.sh
+interval = 600
+format-underline = #FFFFFF
 
 [module/openweathermap-fullfeatured]
 type = custom/script
-exec = ~/.config/polybar/openweathermap-fullfeatured.sh
+exec = ~/.config/polybar/weather-test.sh
 interval = 600
 label-font = 2
 format-underline = #FFFFFF
@@ -83,7 +89,7 @@ click-middle = playerctl --player=spotify previous
 [module/pulseaudio]
 type = internal/pulseaudio
 use-ui-max = false
-label-volume = %{u#ffffff}%{+u}  %percentage%%
+label-volume = %{u#FFFFFF}%{+u}  %percentage%%
 interval = 2
 label-muted = 
 click-right = pavucontrol
